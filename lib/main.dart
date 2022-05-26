@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isWindows) {}
   runApp(MyApp());
 }
 
