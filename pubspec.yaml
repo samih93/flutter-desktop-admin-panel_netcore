@@ -34,6 +34,7 @@ dependencies:
   fl_chart: ^0.50.6
   provider: ^6.0.3
   data_table_2: ^2.0.3
+  desktop_window: ^0.4.0
 
 dev_dependencies:
   flutter_test:

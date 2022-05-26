@@ -37,7 +37,7 @@ class MainScreen extends StatelessWidget {
                       Header(),
                       SizedBox(height: defaultPadding),
                       context.watch<MenuController>().screens[
-                          context.read<MenuController>().currentSelectedIndex],
+                          context.watch<MenuController>().currentSelectedIndex],
                     ],
                   ),
                 ),
