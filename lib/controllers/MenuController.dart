@@ -19,6 +19,17 @@ class MenuController extends ChangeNotifier {
     TransactionsScreen(),
   ];
 
+  final screens_title = [
+    'Dashboard',
+    'Transaction',
+    'Task',
+    'Documents',
+    'Store',
+    'Notification',
+    'Profile',
+    'Settings'
+  ];
+
   List<MenuModel> menuModelList = [
     MenuModel("Dashboard", "assets/icons/menu_dashbord.svg", isselected: true),
     MenuModel("Transaction", "assets/icons/menu_tran.svg"),

@@ -42,28 +42,36 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ListTile> _list_of_listTile = [];
+    List<Widget> _list_of_listTile = [];
     for (int i = 0; i < listOfModel.length; i++)
-      _list_of_listTile.add(ListTile(
-        selected: listOfModel[i].isselected!,
-        selectedColor: Colors.grey.shade400,
-        onTap: () {
-          context.read<MenuController>().onChangeSelectedMenu(i);
-          print(listOfModel[i].title.toString() +
-              " - " +
-              listOfModel[i].isselected.toString());
-          if (Responsive.isMobile(context) || Responsive.isTablet(context))
-            Navigator.pop(context);
-        },
-        horizontalTitleGap: 0.0,
-        leading: SvgPicture.asset(
-          listOfModel[i].svgSrc!,
-          color: Colors.white54,
-          height: 16,
-        ),
-        title: Text(
-          listOfModel[i].title!,
-          style: TextStyle(color: Colors.white54),
+      _list_of_listTile.add(InkWell(
+        // hoverColor: Colors.grey.withOpacity(0.3),
+        child: Container(
+          color: listOfModel[i].isselected!
+              ? Colors.grey.withOpacity(0.3)
+              : secondaryColor,
+          child: ListTile(
+            selected: true,
+            selectedColor: Colors.grey.shade400,
+            onTap: () {
+              context.read<MenuController>().onChangeSelectedMenu(i);
+              print(listOfModel[i].title.toString() +
+                  " - " +
+                  listOfModel[i].isselected.toString());
+              if (Responsive.isMobile(context) || Responsive.isTablet(context))
+                Navigator.pop(context);
+            },
+            horizontalTitleGap: 0.0,
+            leading: SvgPicture.asset(
+              listOfModel[i].svgSrc!,
+              color: Colors.white54,
+              height: 16,
+            ),
+            title: Text(
+              listOfModel[i].title!,
+              style: TextStyle(color: Colors.white54),
+            ),
+          ),
         ),
       ));
     return Column(

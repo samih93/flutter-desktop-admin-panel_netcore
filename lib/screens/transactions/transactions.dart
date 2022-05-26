@@ -5,7 +5,7 @@ class TransactionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Center(child: Text("Transaction screen")),
+      child: Container(),
     );
   }
 }
