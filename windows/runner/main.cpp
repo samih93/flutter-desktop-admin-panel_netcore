@@ -30,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(&run_loop, project);
   Win32Window::Point origin(100, 100);    
   Win32Window::Size size(1200, 650);    
-  if (!window.CreateAndShow(L"FAP", origin, size)) {
+  if (!window.CreateAndShow(L"AdminPanel", origin, size)) {
     return EXIT_FAILURE;
   }  
   window.SetQuitOnClose(true);
