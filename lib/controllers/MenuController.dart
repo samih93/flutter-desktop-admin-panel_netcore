@@ -1,5 +1,6 @@
 import 'package:admin/models/menu_model.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
+import 'package:admin/screens/tasks/tasks.dart';
 import 'package:admin/screens/transactions/transactions.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MenuController extends ChangeNotifier {
   final screens = [
     DashboardScreen(),
     TransactionsScreen(),
-    TransactionsScreen(),
+    TasksScreen(),
     TransactionsScreen(),
     TransactionsScreen(),
     TransactionsScreen(),

@@ -1,6 +1,6 @@
-import 'package:admin/constants.dart';
+import 'package:admin/shared/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
-import 'package:admin/responsive.dart';
+import 'package:admin/shared/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:admin/models/menu_model.dart';

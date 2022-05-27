@@ -6,8 +6,9 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../shared/constants.dart';
 
-class RecentFiles extends StatelessWidget {
-  const RecentFiles({Key? key}) : super(key: key);
+class RecentStudent extends StatelessWidget {
+  final listofstudent;
+  const RecentStudent({Key? key, this.listofstudent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +32,15 @@ class RecentFiles extends StatelessWidget {
               minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text("File Name"),
+                  label: Text("Name"),
                 ),
                 DataColumn(
-                  label: Text("Date"),
-                ),
-                DataColumn(
-                  label: Text("Size"),
+                  label: Text("Age"),
                 ),
               ],
               rows: List.generate(
-                demoRecentFiles.length,
-                (index) => recentFileDataRow(demoRecentFiles[index]),
+                listofstudent.length,
+                (index) => recentFileDataRow(listofstudent[index]),
               ),
             ),
           ),
@@ -52,26 +50,25 @@ class RecentFiles extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(RecentFile fileInfo) {
+DataRow recentFileDataRow(Student student) {
   return DataRow(
     cells: [
       DataCell(
         Row(
           children: [
             SvgPicture.asset(
-              fileInfo.icon!,
+              'assets/icons/menu_profile.svg',
               height: 30,
               width: 30,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(fileInfo.title!),
+              child: Text(student.name!),
             ),
           ],
         ),
       ),
-      DataCell(Text(fileInfo.date!)),
-      DataCell(Text(fileInfo.size!)),
+      DataCell(Text(student.age.toString())),
     ],
   );
 }
