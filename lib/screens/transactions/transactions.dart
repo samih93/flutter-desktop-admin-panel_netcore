@@ -13,28 +13,28 @@ class TransactionsScreen extends StatefulWidget {
 }
 
 class _TransactionsScreenState extends State<TransactionsScreen> {
-  void initState() {
-    // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadData().then((value) => null);
-    });
+  // void initState() {
+  //   // TODO: implement initState
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _loadData().then((value) => null);
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
-  Future<void> _loadData() async {
-    context.read<StudentController>()..getallStudent();
-  }
+  // Future<void> _loadData() async {
+  //   context.read<StudentController>()..getallStudent();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: context.read<StudentController>().isloadingGetStudent == true
+        child: context.read<StudentController>().isloadingSearchStudent == true
             ? Center(child: CircularProgressIndicator())
             : Container(
                 child: Consumer<StudentController>(
-                  builder: (context, studnetcontroller, child) => RecentStudent(
-                    listofstudent: studnetcontroller.list_of_student,
+                  builder: (context, studentcontroller, child) => RecentStudent(
+                    listofstudent: studentcontroller.list_of_student,
                   ),
                 ),
               ));

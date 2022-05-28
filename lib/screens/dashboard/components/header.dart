@@ -84,6 +84,11 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value) {
+        if (context.read<MenuController>().currentSelectedIndex == 1) {
+          context.read<StudentController>().searchStudent(value.trim());
+        }
+      },
       controller: searchController,
       decoration: InputDecoration(
         hintText: "Search",
@@ -93,24 +98,20 @@ class SearchField extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
-        suffixIcon: InkWell(
-          onTap: () {
-            if (context.read<MenuController>().currentSelectedIndex == 1) {
-              context
-                  .read<StudentController>()
-                  .searchStudent(searchController.text.trim());
-            }
-          },
-          child: Container(
-            padding: EdgeInsets.all(defaultPadding * 0.75),
-            margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-            ),
-            child: SvgPicture.asset("assets/icons/Search.svg"),
-          ),
-        ),
+        // suffixIcon: InkWell(
+        //   onTap: () {
+        //     print(searchController.text);
+        //   },
+        //   child: Container(
+        //     padding: EdgeInsets.all(defaultPadding * 0.75),
+        //     margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+        //     decoration: BoxDecoration(
+        //       color: primaryColor,
+        //       borderRadius: const BorderRadius.all(Radius.circular(10)),
+        //     ),
+        //     child: SvgPicture.asset("assets/icons/Search.svg"),
+        //   ),
+        // ),
       ),
     );
   }

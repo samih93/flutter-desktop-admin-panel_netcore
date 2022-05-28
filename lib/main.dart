@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             create: (context) => MenuController(),
           ),
           ChangeNotifierProvider(
-            create: (context) => StudentController(),
+            create: (context) => StudentController()..getallStudent(),
           ),
         ],
         child: MainScreen(),

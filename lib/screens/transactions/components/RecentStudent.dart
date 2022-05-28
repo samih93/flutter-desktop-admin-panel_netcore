@@ -1,8 +1,10 @@
+import 'package:admin/controllers/studentController.dart';
 import 'package:admin/models/RecentFile.dart';
 import 'package:admin/models/student.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../shared/constants.dart';
 
@@ -21,9 +23,22 @@ class RecentStudent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Recent Files",
-            style: Theme.of(context).textTheme.subtitle1,
+          Row(
+            children: [
+              Text(
+                "Recent Transactions",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Spacer(),
+              OutlinedButton(
+                  onPressed: () {
+                    context.read<StudentController>()..getallStudent();
+                  },
+                  child: Text(
+                    "refresh",
+                    style: TextStyle(color: Colors.blue),
+                  ))
+            ],
           ),
           SizedBox(
             width: double.infinity,
