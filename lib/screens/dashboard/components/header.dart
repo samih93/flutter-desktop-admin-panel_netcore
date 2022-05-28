@@ -1,4 +1,5 @@
 import 'package:admin/controllers/MenuController.dart';
+import 'package:admin/controllers/studentController.dart';
 import 'package:admin/shared/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -74,13 +75,16 @@ class ProfileCard extends StatelessWidget {
 }
 
 class SearchField extends StatelessWidget {
-  const SearchField({
+  SearchField({
     Key? key,
   }) : super(key: key);
+
+  var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: searchController,
       decoration: InputDecoration(
         hintText: "Search",
         fillColor: secondaryColor,
@@ -90,7 +94,13 @@ class SearchField extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         suffixIcon: InkWell(
-          onTap: () {},
+          onTap: () {
+            if (context.read<MenuController>().currentSelectedIndex == 1) {
+              context
+                  .read<StudentController>()
+                  .searchStudent(searchController.text.trim());
+            }
+          },
           child: Container(
             padding: EdgeInsets.all(defaultPadding * 0.75),
             margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),

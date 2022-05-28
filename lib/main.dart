@@ -1,3 +1,4 @@
+import 'package:admin/controllers/studentController.dart';
 import 'package:admin/shared/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/screens/main/main_screen.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => MenuController(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => StudentController(),
           ),
         ],
         child: MainScreen(),
