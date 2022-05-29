@@ -1,3 +1,4 @@
+import 'package:admin/controllers/product_controller.dart';
 import 'package:admin/controllers/studentController.dart';
 import 'package:admin/shared/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
@@ -6,7 +7,6 @@ import 'package:admin/shared/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => StudentController()..getallStudent(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ProductController(),
           ),
         ],
         child: MainScreen(),

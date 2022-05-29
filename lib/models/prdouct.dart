@@ -4,9 +4,9 @@ class Product {
   double price = 0;
 
   Product.fromJson(Map<String, dynamic> map) {
-    id = map['id'];
+    id = map['id'].toString();
     name = map['name'];
-    price = map['price'];
+    price = map['price'] != null ? double.parse(map['price'].toString()) : 0;
   }
 
   toJson() {

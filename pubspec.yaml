@@ -34,9 +34,10 @@ dependencies:
   fl_chart: ^0.50.6
   provider: ^6.0.3
   data_table_2: ^2.0.3
-  #dio 
+  #dio
   dio: ^4.0.6
-  
+
+  syncfusion_flutter_datagrid: ^20.1.57
 
 dev_dependencies:
   flutter_test:
