@@ -113,44 +113,36 @@ class ProductDataSource extends DataGridSource {
         textAlign: TextAlign.left,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 16.0),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.check,
-                color: Colors.green,
-              ),
-              onPressed: () {
-                submitCell();
-                Product p = new Product();
-                if (rowColumnIndex.columnIndex == 1)
-                  p = new Product(
-                      id: _products[dataRowIndex].id,
-                      name: editingController.text,
-                      price: _products[dataRowIndex].price);
-                if (rowColumnIndex.columnIndex == 2)
-                  p = new Product(
-                      id: _products[dataRowIndex].id,
-                      name: _products[dataRowIndex].name,
-                      price: double.parse(editingController.text));
-                _context
-                    .read<ProductController>()
-                    .updateProduct(p)
-                    .then((value) {
-                  print('updated');
-                });
-                // DioHelper.dio!.put(
-                //   "products",
-                //   queryParameters: {
-                //     'id': "2",
-                //     "name": editingController.text,
-                //     "price": '30000'
-                //   },
-                // ).then((value) {
-                //   print(value.data());
-                // }).catchError((error) {
-                //   print(error.toString());
-                // });
-              },
-            )),
+            suffixIcon: isfirstColumn
+                ? SizedBox()
+                : IconButton(
+                    icon: Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                    onPressed: () {
+                      submitCell();
+                      Product p = new Product();
+                      // name
+                      if (rowColumnIndex.columnIndex == 1)
+                        p = new Product(
+                            id: _products[dataRowIndex].id,
+                            name: editingController.text,
+                            price: _products[dataRowIndex].price);
+                      // price
+                      if (rowColumnIndex.columnIndex == 2)
+                        p = new Product(
+                            id: _products[dataRowIndex].id,
+                            name: _products[dataRowIndex].name,
+                            price: double.parse(editingController.text));
+                      _context
+                          .read<ProductController>()
+                          .updateProduct(p)
+                          .then((value) {
+                        print('updated');
+                      });
+                    },
+                  )),
         keyboardType: TextInputType.text,
         onChanged: (String value) {
           if (value.isNotEmpty) {
