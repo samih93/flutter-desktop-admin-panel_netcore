@@ -5,7 +5,7 @@ import 'package:admin/screens/transactions/components/RecentStudent.dart';
 import 'package:admin/shared/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 
-class TasksScreen extends StatelessWidget {
+class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: RecentFiles());

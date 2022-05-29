@@ -1,12 +1,11 @@
 import 'package:admin/controllers/studentController.dart';
 import 'package:admin/models/RecentFile.dart';
 import 'package:admin/models/student.dart';
+import 'package:admin/shared/constants.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import '../../../shared/constants.dart';
 
 class RecentStudent extends StatelessWidget {
   final listofstudent;

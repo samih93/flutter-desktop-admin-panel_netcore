@@ -1,6 +1,6 @@
 import 'package:admin/models/menu_model.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
-import 'package:admin/screens/tasks/tasks.dart';
+import 'package:admin/screens/products/products_screen.dart';
 import 'package:admin/screens/transactions/transactions.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class MenuController extends ChangeNotifier {
   final screens = [
     DashboardScreen(),
     TransactionsScreen(),
-    TasksScreen(),
+    ProductScreen(),
     TransactionsScreen(),
     TransactionsScreen(),
     TransactionsScreen(),
@@ -23,7 +23,7 @@ class MenuController extends ChangeNotifier {
   final screens_title = [
     'Dashboard',
     'Transaction',
-    'Task',
+    'Products',
     'Documents',
     'Store',
     'Notification',
@@ -34,7 +34,7 @@ class MenuController extends ChangeNotifier {
   List<MenuModel> menuModelList = [
     MenuModel("Dashboard", "assets/icons/menu_dashbord.svg", isselected: true),
     MenuModel("Transaction", "assets/icons/menu_tran.svg"),
-    MenuModel("Task", "assets/icons/menu_task.svg"),
+    MenuModel("Products", "assets/icons/menu_task.svg"),
     MenuModel("Documents", "assets/icons/menu_doc.svg"),
     MenuModel("Store", "assets/icons/menu_store.svg"),
     MenuModel("Notification", "assets/icons/menu_notification.svg"),
@@ -65,7 +65,4 @@ class MenuController extends ChangeNotifier {
     // });
     notifyListeners();
   }
-
-
-  
 }
