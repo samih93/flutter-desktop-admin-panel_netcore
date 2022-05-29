@@ -1,3 +1,4 @@
+import 'package:admin/controllers/product_controller.dart';
 import 'package:admin/models/prdouct.dart';
 import 'package:admin/shared/remote/dio_helper.dart';
 import 'package:dio/dio.dart';
@@ -7,8 +8,9 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ProductDataSource extends DataGridSource {
   List<Product> _products = [];
+  BuildContext _context;
 
-  ProductDataSource(this._products) {
+  ProductDataSource(this._context, this._products) {
     dataGridRows = _products
         .map<DataGridRow>((product) => getDataGridRow(product))
         .toList();
@@ -19,7 +21,6 @@ class ProductDataSource extends DataGridSource {
       DataGridCell<String>(columnName: 'id', value: product.id),
       DataGridCell<String>(columnName: 'name', value: product.name),
       DataGridCell<double>(columnName: 'price', value: product.price),
-     
     ]);
   }
 
@@ -100,7 +101,7 @@ class ProductDataSource extends DataGridSource {
 
     bool isfirstColumn = column.columnName == "id";
 
-    //final int dataRowIndex = dataGridRows.indexOf(dataGridRow);
+    final int dataRowIndex = dataGridRows.indexOf(dataGridRow);
 
     return Container(
       padding: const EdgeInsets.all(8.0),
@@ -118,8 +119,24 @@ class ProductDataSource extends DataGridSource {
                 color: Colors.green,
               ),
               onPressed: () {
-                print(editingController.text);
                 submitCell();
+                Product p = new Product();
+                if (rowColumnIndex.columnIndex == 1)
+                  p = new Product(
+                      id: _products[dataRowIndex].id,
+                      name: editingController.text,
+                      price: _products[dataRowIndex].price);
+                if (rowColumnIndex.columnIndex == 2)
+                  p = new Product(
+                      id: _products[dataRowIndex].id,
+                      name: _products[dataRowIndex].name,
+                      price: double.parse(editingController.text));
+                _context
+                    .read<ProductController>()
+                    .updateProduct(p)
+                    .then((value) {
+                  print('updated');
+                });
                 // DioHelper.dio!.put(
                 //   "products",
                 //   queryParameters: {

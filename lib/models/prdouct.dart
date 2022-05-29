@@ -1,9 +1,9 @@
 class Product {
   String? id;
   String? name;
-  double price = 0;
+  double? price;
 
-  Product(this.id, this.name, this.price);
+  Product({this.id, this.name, this.price = 0});
 
   Product.fromJson(Map<String, dynamic> map) {
     id = map['id'].toString();

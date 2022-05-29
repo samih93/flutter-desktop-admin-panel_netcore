@@ -36,21 +36,18 @@ class _ProductScreenState extends State<ProductScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : Container(
-              width: double.infinity,
-              child: SfDataGrid(
-                onQueryRowHeight: (details) {
-                  // Set the row height as 70.0 to the column header row.
-                  return details.rowIndex == 0 ? 70.0 : 49.0;
-                },
-                allowEditing: true,
-                selectionMode: SelectionMode.single,
-                navigationMode: GridNavigationMode.cell,
-                source: ProductDataSource(
-                    context.watch<ProductController>().list_of_product),
-                columnWidthMode: ColumnWidthMode.fill,
-                columns: getColumns(),
-              ),
+          : SfDataGrid(
+              onQueryRowHeight: (details) {
+                // Set the row height as 70.0 to the column header row.
+                return details.rowIndex == 0 ? 70.0 : 49.0;
+              },
+              allowEditing: true,
+              selectionMode: SelectionMode.single,
+              navigationMode: GridNavigationMode.cell,
+              source: ProductDataSource(context,
+                  context.watch<ProductController>().list_of_product),
+              columnWidthMode: ColumnWidthMode.fill,
+              columns: getColumns(),
             ),
     );
   }
@@ -83,7 +80,7 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Text(
                 'Price',
                 overflow: TextOverflow.ellipsis,
-              ))),
+              )))
     ];
   }
 }
