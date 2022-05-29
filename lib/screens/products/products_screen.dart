@@ -1,11 +1,6 @@
 import 'package:admin/controllers/product_controller.dart';
 import 'package:admin/models/prdouct.dart';
-import 'package:admin/models/student.dart';
-import 'package:admin/screens/dashboard/components/recent_files.dart';
-import 'package:admin/screens/main/components/side_menu.dart';
 import 'package:admin/screens/products/components/product_data_source.dart';
-import 'package:admin/screens/transactions/components/RecentStudent.dart';
-import 'package:admin/shared/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -32,6 +27,8 @@ class _ProductScreenState extends State<ProductScreen> {
     context.read<ProductController>()..getallProduct();
   }
 
+  final DataGridController _dataGridController = DataGridController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,38 +36,54 @@ class _ProductScreenState extends State<ProductScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : SfDataGrid(
-              selectionMode: SelectionMode.single,
-              allowEditing: true,
-              source: ProductDataSource(
-                  products: context.watch<ProductController>().list_of_product),
-              columnWidthMode: ColumnWidthMode.fill,
-              columns: <GridColumn>[
-                GridColumn(
-                    columnName: 'id',
-                    label: Container(
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          'ID',
-                        ))),
-                GridColumn(
-                    columnName: 'name',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        alignment: Alignment.center,
-                        child: Text('Name'))),
-                GridColumn(
-                    columnName: 'Price',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Price',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-              ],
+          : Container(
+              width: double.infinity,
+              child: SfDataGrid(
+                onQueryRowHeight: (details) {
+                  // Set the row height as 70.0 to the column header row.
+                  return details.rowIndex == 0 ? 70.0 : 49.0;
+                },
+                allowEditing: true,
+                selectionMode: SelectionMode.single,
+                navigationMode: GridNavigationMode.cell,
+                source: ProductDataSource(
+                    context.watch<ProductController>().list_of_product),
+                columnWidthMode: ColumnWidthMode.fill,
+                columns: getColumns(),
+              ),
             ),
     );
+  }
+
+  getColumns() {
+    return <GridColumn>[
+      GridColumn(
+          columnName: 'id',
+          label: Container(
+              padding: EdgeInsets.all(16.0),
+              alignment: Alignment.center,
+              child: Text(
+                'ID',
+                overflow: TextOverflow.ellipsis,
+              ))),
+      GridColumn(
+          columnName: 'name',
+          label: Container(
+              padding: EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: Text(
+                'Name',
+                overflow: TextOverflow.ellipsis,
+              ))),
+      GridColumn(
+          columnName: 'price',
+          label: Container(
+              padding: EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: Text(
+                'Price',
+                overflow: TextOverflow.ellipsis,
+              ))),
+    ];
   }
 }

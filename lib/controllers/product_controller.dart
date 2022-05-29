@@ -53,4 +53,26 @@ class ProductController extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> updateProduct(Product product) async {
+    //isloadingGetProduct = true;
+    //  notifyListeners();
+    DioHelper.dio!.put("products", data: {
+      "id": product.id,
+      "name": product.name,
+      "price": product.price
+    }).then((value) {
+      list_of_product.map((p) => {
+            if (p == product) {p.name = product.name, p.price = product.price}
+          });
+
+      original_list_of_Product = list_of_product;
+      //isloadingGetProduct = false;
+
+      list_of_product.forEach((element) {
+        print(element.toJson());
+      });
+      notifyListeners();
+    });
+  }
 }

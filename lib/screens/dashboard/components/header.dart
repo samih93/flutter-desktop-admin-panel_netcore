@@ -1,4 +1,5 @@
 import 'package:admin/controllers/MenuController.dart';
+import 'package:admin/controllers/product_controller.dart';
 import 'package:admin/controllers/studentController.dart';
 import 'package:admin/shared/responsive.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,8 @@ class SearchField extends StatelessWidget {
       onChanged: (value) {
         if (context.read<MenuController>().currentSelectedIndex == 1) {
           context.read<StudentController>().searchStudent(value.trim());
+        } else if (context.read<MenuController>().currentSelectedIndex == 2) {
+          context.read<ProductController>().searchproduct(value.trim());
         }
       },
       controller: searchController,

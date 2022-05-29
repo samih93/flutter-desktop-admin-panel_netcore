@@ -3,6 +3,8 @@ class Product {
   String? name;
   double price = 0;
 
+  Product(this.id, this.name, this.price);
+
   Product.fromJson(Map<String, dynamic> map) {
     id = map['id'].toString();
     name = map['name'];
