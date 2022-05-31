@@ -7,13 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ProductDataSource extends DataGridSource {
-  List<Product> _products = [];
+  List<Product> products = [];
   BuildContext _context;
 
-  ProductDataSource(this._context, this._products) {
-    dataGridRows = _products
-        .map<DataGridRow>((product) => getDataGridRow(product))
-        .toList();
+  ProductDataSource(this._context, List<Product> _products) {
+    products = _products;
+    updateDataGridRows();
   }
 
   DataGridRow getDataGridRow(Product product) {
@@ -24,7 +23,11 @@ class ProductDataSource extends DataGridSource {
     ]);
   }
 
-  List<DataGridRow> _productData = [];
+  void updateDataGridRows() {
+    dataGridRows = products
+        .map<DataGridRow>((product) => getDataGridRow(product))
+        .toList();
+  }
 
   List<DataGridRow> dataGridRows = [];
 
@@ -69,16 +72,16 @@ class ProductDataSource extends DataGridSource {
 // if (column.columnName == 'id') {
 //       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
 //           DataGridCell<int>(columnName: 'id', value: newCellValue);
-//       _products[dataRowIndex].id = newCellValue;
+//       products[dataRowIndex].id = newCellValue;
     // } else
     if (column.columnName == 'name') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'name', value: newCellValue);
-      _products[dataRowIndex].name = newCellValue.toString();
+      products[dataRowIndex].name = newCellValue.toString();
     } else if (column.columnName == 'price') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'price', value: newCellValue);
-      _products[dataRowIndex].price = double.parse(newCellValue.toString());
+      products[dataRowIndex].price = double.parse(newCellValue.toString());
     }
   }
 
@@ -126,14 +129,14 @@ class ProductDataSource extends DataGridSource {
                       // name
                       if (rowColumnIndex.columnIndex == 1)
                         p = new Product(
-                            id: _products[dataRowIndex].id,
+                            id: products[dataRowIndex].id,
                             name: editingController.text,
-                            price: _products[dataRowIndex].price);
+                            price: products[dataRowIndex].price);
                       // price
                       if (rowColumnIndex.columnIndex == 2)
                         p = new Product(
-                            id: _products[dataRowIndex].id,
-                            name: _products[dataRowIndex].name,
+                            id: products[dataRowIndex].id,
+                            name: products[dataRowIndex].name,
                             price: double.parse(editingController.text));
                       _context
                           .read<ProductController>()
