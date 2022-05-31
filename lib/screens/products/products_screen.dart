@@ -42,41 +42,6 @@ class _ProductScreenState extends State<ProductScreen> {
           )
         : Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton.icon(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: defaultPadding * 1.5,
-                        vertical: defaultPadding /
-                            (Responsive.isMobile(context) ? 2 : 1),
-                      ),
-                    ),
-                    onPressed: () {
-                      // productDataSource.addRow();
-                      // productDataSource.updateDataGridSource();
-                    },
-                    icon: Icon(Icons.save),
-                    label: Text("Save"),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  ElevatedButton.icon(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: defaultPadding * 1.5,
-                        vertical: defaultPadding /
-                            (Responsive.isMobile(context) ? 2 : 1),
-                      ),
-                    ),
-                    onPressed: () {},
-                    icon: Icon(Icons.add),
-                    label: Text("New Product"),
-                  ),
-                ],
-              ),
               SfDataGrid(
                 onQueryRowHeight: (details) {
                   // Set the row height as 70.0 to the column header row.
@@ -121,7 +86,7 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Text(
                 'Price',
                 overflow: TextOverflow.ellipsis,
-              )))
+              ))),
     ];
   }
 }

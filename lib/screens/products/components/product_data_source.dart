@@ -23,14 +23,6 @@ class ProductDataSource extends DataGridSource {
     ]);
   }
 
-  void addRow() {
-    dataGridRows.add(const DataGridRow(cells: [
-      DataGridCell<String>(columnName: 'id', value: ''),
-      DataGridCell<String>(columnName: 'name', value: ''),
-      DataGridCell<double>(columnName: 'price', value: 0),
-    ]));
-  }
-
   void updateDataGridRows() {
     dataGridRows = products
         .map<DataGridRow>((product) => getDataGridRow(product))
@@ -185,9 +177,5 @@ class ProductDataSource extends DataGridSource {
 
   RegExp _getRegExp(bool isNumericKeyBoard, String columnName) {
     return isNumericKeyBoard ? RegExp('[0-9]') : RegExp('[a-zA-Z ]');
-  }
-
-  void updateDataGridSource() {
-    notifyListeners();
   }
 }
