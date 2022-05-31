@@ -1,6 +1,8 @@
 import 'package:admin/controllers/product_controller.dart';
 import 'package:admin/models/prdouct.dart';
 import 'package:admin/screens/products/components/product_data_source.dart';
+import 'package:admin/shared/constants.dart';
+import 'package:admin/shared/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -12,7 +14,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   List<Product> products = <Product>[];
-  ProductDataSource? productDataSource;
+  late ProductDataSource productDataSource;
 
   @override
   void initState() {
@@ -27,29 +29,68 @@ class _ProductScreenState extends State<ProductScreen> {
     context.read<ProductController>()..getallProduct();
   }
 
-  final DataGridController _dataGridController = DataGridController();
+  // final DataGridController _dataGridController = DataGridController();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: context.watch<ProductController>().isloadingGetProduct == true
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : SfDataGrid(
-              onQueryRowHeight: (details) {
-                // Set the row height as 70.0 to the column header row.
-                return details.rowIndex == 0 ? 70.0 : 49.0;
-              },
-              allowEditing: true,
-              selectionMode: SelectionMode.single,
-              navigationMode: GridNavigationMode.cell,
-              source: ProductDataSource(context,
-                  context.watch<ProductController>().list_of_product),
-              columnWidthMode: ColumnWidthMode.fill,
-              columns: getColumns(),
-            ),
-    );
+    ProductController productController = Provider.of(context);
+    productDataSource =
+        ProductDataSource(context, productController.list_of_product);
+    return productController.isloadingGetProduct == true
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton.icon(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding * 1.5,
+                        vertical: defaultPadding /
+                            (Responsive.isMobile(context) ? 2 : 1),
+                      ),
+                    ),
+                    onPressed: () {
+                      // productDataSource.addRow();
+                      // productDataSource.updateDataGridSource();
+                    },
+                    icon: Icon(Icons.save),
+                    label: Text("Save"),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton.icon(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding * 1.5,
+                        vertical: defaultPadding /
+                            (Responsive.isMobile(context) ? 2 : 1),
+                      ),
+                    ),
+                    onPressed: () {},
+                    icon: Icon(Icons.add),
+                    label: Text("New Product"),
+                  ),
+                ],
+              ),
+              SfDataGrid(
+                onQueryRowHeight: (details) {
+                  // Set the row height as 70.0 to the column header row.
+                  return details.rowIndex == 0 ? 70.0 : 49.0;
+                },
+                allowEditing: true,
+                selectionMode: SelectionMode.single,
+                navigationMode: GridNavigationMode.cell,
+                source: productDataSource,
+                columnWidthMode: ColumnWidthMode.fill,
+                columns: getColumns(),
+              ),
+            ],
+          );
   }
 
   getColumns() {

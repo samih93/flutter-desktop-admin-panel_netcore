@@ -21,9 +21,9 @@ class ProductController extends ChangeNotifier {
       original_list_of_Product = list_of_product;
       isloadingGetProduct = false;
 
-      // list_of_product.forEach((element) {
-      //   print(element.toJson());
-      // });
+      list_of_product.forEach((element) {
+        print(element.toJson());
+      });
       notifyListeners();
     });
     return list_of_product;
