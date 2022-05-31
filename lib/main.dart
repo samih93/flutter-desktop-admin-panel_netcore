@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             create: (context) => StudentController()..getallStudent(),
           ),
           ChangeNotifierProvider(
-            create: (context) => ProductController(),
+            create: (context) => ProductController()..getallProduct(),
           ),
         ],
         child: MainScreen(),
