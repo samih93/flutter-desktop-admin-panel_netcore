@@ -9,11 +9,11 @@ class ProductController extends ChangeNotifier {
   List<Product> list_of_product = [];
   List<Product> original_list_of_Product = [];
 
-  Future<void> getallProduct() async {
+  Future<List<Product>> getallProduct() async {
     list_of_product = [];
     isloadingGetProduct = true;
     notifyListeners();
-    DioHelper.dio!.get("products").then((value) {
+    await DioHelper.dio!.get("products").then((value) {
       value.data.forEach((element) {
         list_of_product.add((Product.fromJson(element)));
       });
@@ -21,15 +21,17 @@ class ProductController extends ChangeNotifier {
       original_list_of_Product = list_of_product;
       isloadingGetProduct = false;
 
-      list_of_product.forEach((element) {
-        print(element.toJson());
-      });
+      // list_of_product.forEach((element) {
+      //   print(element.toJson());
+      // });
       notifyListeners();
     });
+    return list_of_product;
   }
 
 // search for a student
   bool isloadingSearchproduct = false;
+  bool? ishasData = false;
 
   Future<void> searchproduct(String name) async {
     list_of_product = [];
@@ -40,13 +42,12 @@ class ProductController extends ChangeNotifier {
       DioHelper.dio!.get("products/search",
           queryParameters: {"name": '$name'}).then((value) {
         value.data.forEach((element) {
-          print(element);
           list_of_product.add((Product.fromJson(element)));
         });
-
         isloadingSearchproduct = false;
-
         notifyListeners();
+      }).catchError((error) {
+        print(error.toString());
       });
     } else {
       list_of_product = original_list_of_Product;
