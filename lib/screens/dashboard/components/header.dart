@@ -87,7 +87,7 @@ class SearchField extends StatelessWidget {
     return TextField(
       onChanged: (value) {
         if (context.read<MenuController>().currentSelectedIndex == 1) {
-          context.read<StudentController>().searchStudent(value.trim());
+          // context.read<StudentController>().searchStudent(value.trim());
         } else if (context.read<MenuController>().currentSelectedIndex == 2) {
           context
               .read<ProductController>()

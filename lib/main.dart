@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             create: (context) => MenuController(),
           ),
           ChangeNotifierProvider(
-            create: (context) => StudentController()..getallStudent(),
+            create: (context) => StudentController(),
           ),
           ChangeNotifierProvider(
             create: (context) => ProductController(),

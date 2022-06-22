@@ -29,14 +29,12 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: context.read<StudentController>().isloadingSearchStudent == true
-            ? Center(child: CircularProgressIndicator())
-            : Container(
-                child: Consumer<StudentController>(
-                  builder: (context, studentcontroller, child) => RecentStudent(
-                    listofstudent: studentcontroller.list_of_student,
-                  ),
-                ),
-              ));
+        child: Container(
+      child: Consumer<StudentController>(
+        builder: (context, studentcontroller, child) => RecentStudent(
+          listofstudent: studentcontroller.list_of_student,
+        ),
+      ),
+    ));
   }
 }

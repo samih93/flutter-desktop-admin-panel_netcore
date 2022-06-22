@@ -31,7 +31,7 @@ class RecentStudent extends StatelessWidget {
               Spacer(),
               OutlinedButton(
                   onPressed: () {
-                    context.read<StudentController>()..getallStudent();
+                    // context.read<StudentController>()..getallStudent();
                   },
                   child: Text(
                     "refresh",
