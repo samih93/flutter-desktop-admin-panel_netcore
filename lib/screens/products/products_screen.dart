@@ -42,18 +42,22 @@ class _ProductScreenState extends State<ProductScreen> {
           )
         : Column(
             children: [
-              SfDataGrid(
-                onQueryRowHeight: (details) {
-                  // Set the row height as 70.0 to the column header row.
-                  return details.rowIndex == 0 ? 70.0 : 49.0;
-                },
-                allowEditing: true,
-                allowSorting: true,
-                selectionMode: SelectionMode.single,
-                navigationMode: GridNavigationMode.cell,
-                source: productDataSource,
-                columnWidthMode: ColumnWidthMode.fill,
-                columns: getColumns(),
+              Container(
+                padding: EdgeInsets.all(3),
+                height: MediaQuery.of(context).size.height * .6,
+                child: SfDataGrid(
+                  onQueryRowHeight: (details) {
+                    // Set the row height as 70.0 to the column header row.
+                    return details.rowIndex == 0 ? 70.0 : 49.0;
+                  },
+                  allowEditing: true,
+                  allowSorting: true,
+                  selectionMode: SelectionMode.single,
+                  navigationMode: GridNavigationMode.cell,
+                  source: productDataSource,
+                  columnWidthMode: ColumnWidthMode.fill,
+                  columns: getColumns(),
+                ),
               ),
             ],
           );
@@ -62,7 +66,7 @@ class _ProductScreenState extends State<ProductScreen> {
   getColumns() {
     return <GridColumn>[
       GridColumn(
-        allowSorting: false,
+          allowSorting: false,
           columnName: 'id',
           label: Container(
               padding: EdgeInsets.all(16.0),
