@@ -89,9 +89,8 @@ class SearchField extends StatelessWidget {
         if (context.read<MenuController>().currentSelectedIndex == 1) {
           // context.read<StudentController>().searchStudent(value.trim());
         } else if (context.read<MenuController>().currentSelectedIndex == 2) {
-          context
-              .read<ProductController>()
-              .searchproduct(value.trim().toString());
+          context.read<ProductController>().searchproduct(
+              value.trim().length > 2 ? value.trim().toString() : '');
         }
       },
       controller: searchController,
