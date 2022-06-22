@@ -48,6 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   return details.rowIndex == 0 ? 70.0 : 49.0;
                 },
                 allowEditing: true,
+                allowSorting: true,
                 selectionMode: SelectionMode.single,
                 navigationMode: GridNavigationMode.cell,
                 source: productDataSource,
@@ -61,6 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
   getColumns() {
     return <GridColumn>[
       GridColumn(
+        allowSorting: false,
           columnName: 'id',
           label: Container(
               padding: EdgeInsets.all(16.0),
